@@ -18,11 +18,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    vproperties.cpp
+    vdatabasemanager.cpp \
+    vproperties.cpp \
+    vpropertiesmodel.cpp
 
 HEADERS += \
     mainwindow.h \
-    vproperties.h
+    vdatabasemanager.h \
+    vproperties.h \
+    vpropertiesmodel.h
 
 FORMS += \
     mainwindow.ui

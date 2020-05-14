@@ -10,6 +10,9 @@ const auto INSERT_PROPERTIES = QLatin1String(R"(
     insert into db_properties (id, version(?)
     )");
 
+const auto SELECT_PROPERTIES = QLatin1String(R"(
+    select * from db_properties )");
+
 VProperties::VProperties(QSqlDatabase &db) noexcept:
     mDatabase(db)
 {
@@ -33,3 +36,19 @@ void VProperties::AddProperties(const Properties &table) const
     query.addBindValue(table.Version());
     query.exec();
 }
+
+vectorProperties VProperties::PropertiesBuffer() const
+{
+    QSqlQuery query (SELECT_PROPERTIES, mDatabase);
+    query.exec();
+    vectorProperties list (new std::vector<std::unique_ptr<Properties>>);
+    while (query.next())
+    {
+        std::unique_ptr<Properties> property (new Properties());
+        property->SetId(query.value("id").toInt());
+        property->SetVersion(query.value("version").toInt());
+        list->push_back(std::move(property));
+    }
+    return list;
+}
+

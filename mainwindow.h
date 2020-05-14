@@ -1,7 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include "vpropertiesmodel.h"
 #include <QMainWindow>
+#include <QSqlRelationalTableModel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,5 +18,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    VPropertiesModel *propertyModel;
+    QSqlRelationalTableModel *relationModel;
 };
 #endif // MAINWINDOW_H
