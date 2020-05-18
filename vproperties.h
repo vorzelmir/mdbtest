@@ -10,18 +10,27 @@ namespace mdbtest
     struct Properties;
     class VProperties;
 }
-
+#define FORMAT_VERSION(major, minor, patch) ((major<<16)|(minor<<8)|(patch))
 struct Properties
 {
+    Properties ():
+        mId(),
+        mVersion(Version())
+    {
+
+    }
     constexpr int Id () const { return mId;}
-    constexpr int Version () const { return mVersion;}
+    constexpr int Version () const
+    {
+        const int value = FORMAT_VERSION(0, 0, 1);
+        return value;
+    }
 
     constexpr void SetId (int const& id)  { mId = id;}
     constexpr void SetVersion (int const& version) { mVersion = version;}
 private:
     int mId, mVersion;
 };
-Q_DECLARE_METATYPE(Properties)
 
 using vectorProperties = std::unique_ptr<std::vector<std::unique_ptr<Properties>>>;
 class VProperties
@@ -35,4 +44,5 @@ private:
     QSqlDatabase& mDatabase;
 };
 
+Q_DECLARE_METATYPE (Properties)
 #endif // VPROPERTIES_H

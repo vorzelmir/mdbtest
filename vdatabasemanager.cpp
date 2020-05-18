@@ -5,17 +5,27 @@
 #include <QDebug>
 #include <QSqlError>
 
+/**
+ * @brief singleton instance of class
+ * @return VDatabaseManager
+ */
 VDatabaseManager &VDatabaseManager::Instance()
 {
     static VDatabaseManager instance;
     return instance;
 }
 
+//-------------------------------------------------------------------------------------------------
 VDatabaseManager::~VDatabaseManager()
 {
     mManager->close();
 }
 
+//---------------------------------------------------------------------------------------------
+/**
+ * @brief static warning of error
+ * @param query
+ */
 void VDatabaseManager::Warning(const QSqlQuery &query)
 {
     if (query.lastError().type() == QSqlError::ErrorType::NoError)
@@ -28,9 +38,14 @@ void VDatabaseManager::Warning(const QSqlQuery &query)
     }
 }
 
+//-----------------------------------------------------------------------------------------------
+/**
+ * @brief point to enter to the database
+ */
 VDatabaseManager::VDatabaseManager():
     mManager (new QSqlDatabase (QSqlDatabase::addDatabase("QSQLITE"))),
-    mPropertiesTableManager(*mManager)
+    mPropertiesTableManager(*mManager),
+    mPatternTableManager(*mManager)
 {
     QDir dir;
     const auto dirPath = QDir::homePath() + QStringLiteral("/Valentina");
@@ -51,6 +66,7 @@ VDatabaseManager::VDatabaseManager():
     bool isConnected = mManager->open();
     qDebug() << "Database connection: " << (isConnected ? true: false);
     mPropertiesTableManager.Init();
+    mPatternTableManager.Init();
 }
 
 

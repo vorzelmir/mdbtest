@@ -1,6 +1,9 @@
 #ifndef VDATABASEMANAGER_H
 #define VDATABASEMANAGER_H
+
 #include "vproperties.h"
+#include "vpattern.h"
+
 #include <QSqlQuery>
 #include <QSqlDatabase>
 #include <memory>
@@ -21,6 +24,7 @@ private:
     std::unique_ptr<QSqlDatabase> mManager;
 public:
     const VProperties mPropertiesTableManager;
+    const VPattern mPatternTableManager;
 };
 
 #endif // VDATABASEMANAGER_H

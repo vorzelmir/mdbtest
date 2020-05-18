@@ -7,21 +7,28 @@ const auto CREATE_PROPERTIES = QLatin1String (R"(
     )");
 
 const auto INSERT_PROPERTIES = QLatin1String(R"(
-    insert into db_properties (id, version(?)
+    insert into db_properties (version) values (?)
     )");
 
 const auto SELECT_PROPERTIES = QLatin1String(R"(
     select * from db_properties )");
 
+const auto PROPERTIES_TABLE = QStringLiteral ("db_properties");
+
+//---------------------------------------------------------------------------------------------
 VProperties::VProperties(QSqlDatabase &db) noexcept:
     mDatabase(db)
 {
 
 }
 
+//----------------------------------------------------------------------------------------------
+/**
+ * @brief create db_properties table
+ */
 void VProperties::Init() const
 {
-    if (!mDatabase.contains("db_properties"))
+    if (!mDatabase.contains(PROPERTIES_TABLE))
     {
         QSqlQuery query { mDatabase};
         query.prepare(CREATE_PROPERTIES);
@@ -29,6 +36,11 @@ void VProperties::Init() const
     }
 }
 
+//-----------------------------------------------------------------------------------------------
+/**
+ * @brief add values to the db_properties table
+ * @param table
+ */
 void VProperties::AddProperties(const Properties &table) const
 {
     QSqlQuery query {mDatabase};
@@ -37,6 +49,11 @@ void VProperties::AddProperties(const Properties &table) const
     query.exec();
 }
 
+//-----------------------------------------------------------------------------------------------
+/**
+ * @brief buffer to insert data to the database through vector in the memory
+ * @return vectorProperties
+ */
 vectorProperties VProperties::PropertiesBuffer() const
 {
     QSqlQuery query (SELECT_PROPERTIES, mDatabase);

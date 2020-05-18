@@ -8,12 +8,20 @@ VPropertiesModel::VPropertiesModel(QObject *parent):
 
 }
 
+//------------------------------------------------------------------------------------------------
 int VPropertiesModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
     return static_cast<int>(mPropertiesTables->size());
 }
 
+//------------------------------------------------------------------------------------------------
+/**
+ * @brief return data from db_properties according to the Propertie::Roles
+ * @param index
+ * @param role
+ * @return QVariant id or version
+ */
 QVariant VPropertiesModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() && index.row() < rowCount())
@@ -34,17 +42,23 @@ QVariant VPropertiesModel::data(const QModelIndex &index, int role) const
     }
 }
 
+//---------------------------------------------------------------------------------------------
+/**
+ * @brief add data to the vector in the memory
+ */
 void VPropertiesModel::AddProperty()
 {
     const Properties &property{};
     int rowIndex = rowCount();
     if (rowIndex == 0)
     {
-        beginInsertRows(QModelIndex(), rowIndex, rowIndex);//to insert one row
+        //to insert one row
+        beginInsertRows(QModelIndex(), rowIndex, rowIndex);
         std::unique_ptr<Properties> newProperties(new Properties(property));
         //access to the VPropertiesTableData::AddProperties()
         mManager.mPropertiesTableManager.AddProperties (*newProperties);
-        mPropertiesTables->push_back(std::move(newProperties));//change the owner of properties
+        //change the owner of properties
+        mPropertiesTables->push_back(std::move(newProperties));
         endInsertRows();
     }
 }

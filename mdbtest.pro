@@ -19,12 +19,17 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     vdatabasemanager.cpp \
+    vpattern.cpp \
+    vpatternmodel.cpp \
     vproperties.cpp \
     vpropertiesmodel.cpp
 
 HEADERS += \
+    init.h \
     mainwindow.h \
     vdatabasemanager.h \
+    vpattern.h \
+    vpatternmodel.h \
     vproperties.h \
     vpropertiesmodel.h
 
