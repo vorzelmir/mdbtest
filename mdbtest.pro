@@ -22,6 +22,7 @@ SOURCES += \
     vdatabasemanager.cpp \
     vgroup.cpp \
     vgroupmodel.cpp \
+    vmeasurement.cpp \
     vpattern.cpp \
     vpatternmodel.cpp \
     vproperties.cpp \
@@ -33,6 +34,7 @@ HEADERS += \
     vdatabasemanager.h \
     vgroup.h \
     vgroupmodel.h \
+    vmeasurement.h \
     vpattern.h \
     vpatternmodel.h \
     vproperties.h \
