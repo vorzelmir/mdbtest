@@ -3,6 +3,7 @@
 
 #include "vproperties.h"
 #include "vpattern.h"
+#include "vgroup.h"
 
 #include <QSqlQuery>
 #include <QSqlDatabase>
@@ -25,6 +26,7 @@ private:
 public:
     const VProperties mPropertiesTableManager;
     const VPattern mPatternTableManager;
+    const VGroup mGroupTableMananer;
 };
 
 #endif // VDATABASEMANAGER_H
