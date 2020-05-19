@@ -16,10 +16,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    init.cpp \
     main.cpp \
     mainwindow.cpp \
     vdatabasemanager.cpp \
     vgroup.cpp \
+    vgroupmodel.cpp \
     vpattern.cpp \
     vpatternmodel.cpp \
     vproperties.cpp \
@@ -30,6 +32,7 @@ HEADERS += \
     mainwindow.h \
     vdatabasemanager.h \
     vgroup.h \
+    vgroupmodel.h \
     vpattern.h \
     vpatternmodel.h \
     vproperties.h \

@@ -92,8 +92,7 @@ QModelIndex VPatternModel::AddPattern(const Pattern &pattern)
  */
 void VPatternModel::InitPatternTable()
 {
-    QVector<mdbtest::PatternSystem> vector;
-    vector = mdbtest::PMSystem();
+    QVector<mdbtest::PatternSystem> vector = mdbtest::PMSystem();
     for (int i = 0; i < vector.size(); ++i)
     {
         Pattern pattern;

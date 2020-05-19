@@ -26,7 +26,7 @@ private:
 public:
     const VProperties mPropertiesTableManager;
     const VPattern mPatternTableManager;
-    const VGroup mGroupTableMananer;
+    const VGroup mGroupTableManager;
 };
 
 #endif // VDATABASEMANAGER_H

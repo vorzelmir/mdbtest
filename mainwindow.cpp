@@ -7,14 +7,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui(new Ui::MainWindow),
     propertyModel(nullptr),
     patternModel(nullptr),
+    groupModel(nullptr),
     relationModel(nullptr)
 {
     ui->setupUi(this);
     propertyModel = new VPropertiesModel(this);
     patternModel = new VPatternModel(this);
+    groupModel = new VGroupModel(this);
 
     propertyModel->AddProperty();
     patternModel->InitPatternTable();
+    groupModel->InitGroupTable();
 
     relationModel = new QSqlRelationalTableModel(ui->databaseTable);
 }

@@ -46,7 +46,7 @@ VDatabaseManager::VDatabaseManager():
     mManager (new QSqlDatabase (QSqlDatabase::addDatabase("QSQLITE"))),
     mPropertiesTableManager(*mManager),
     mPatternTableManager(*mManager),
-    mGroupTableMananer(*mManager)
+    mGroupTableManager(*mManager)
 {
     QDir dir;
     const auto dirPath = QDir::homePath() + QStringLiteral("/Valentina");
@@ -68,7 +68,7 @@ VDatabaseManager::VDatabaseManager():
     qDebug() << "Database connection: " << (isConnected ? true: false);
     mPropertiesTableManager.Init();
     mPatternTableManager.Init();
-    mGroupTableMananer.Init();
+    mGroupTableManager.Init();
 }
 
 

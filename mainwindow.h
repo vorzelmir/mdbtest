@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include "vpropertiesmodel.h"
 #include "vpatternmodel.h"
+#include "vgroupmodel.h"
 
 #include <QMainWindow>
 #include <QSqlRelationalTableModel>
@@ -22,6 +23,7 @@ private:
     Ui::MainWindow *ui;
     VPropertiesModel *propertyModel;
     VPatternModel *patternModel;
+    VGroupModel *groupModel;
     QSqlRelationalTableModel *relationModel;
 };
 #endif // MAINWINDOW_H

@@ -3,14 +3,14 @@
 #include "vdatabasemanager.h"
 
 const auto CREATE_GROUP = QLatin1String (R"(
-    create table pattern_system(id integer primary key autoincrement,
+    create table measurement_group(id integer primary key autoincrement,
                                 name varchar (15),
                                 pattern varchar (50),
                                 unique (name, pattern),
                                 foreign key (pattern) references pattern_system (id)))");
 
 const auto INSERT_GROUP = QLatin1String (R"(
-    insert into pattern_system(name, description) values (?, ?))");
+    insert into measurement_group(name, pattern) values (?, ?))");
 
 const auto SELECT_GROUP = QLatin1String(R"(
     select * from measurement_group )");
