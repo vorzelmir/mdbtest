@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/diagrams">
+        <file>diagrams/Ap1.svg</file>
+        <file>diagrams/Ap2.svg</file>
+        <file>diagrams/Bp1.svg</file>
+        <file>diagrams/Bp2.svg</file>
+        <file>diagrams/Cp1.svg</file>
+    </qresource>
+</RCC>

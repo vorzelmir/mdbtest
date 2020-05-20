@@ -3,6 +3,7 @@
 #include "vpropertiesmodel.h"
 #include "vpatternmodel.h"
 #include "vgroupmodel.h"
+#include "vmeasurementmodel.h"
 
 #include <QMainWindow>
 #include <QSqlRelationalTableModel>
@@ -24,6 +25,7 @@ private:
     VPropertiesModel *propertyModel;
     VPatternModel *patternModel;
     VGroupModel *groupModel;
+    VMeasurementModel *measModel;
     QSqlRelationalTableModel *relationModel;
 };
 #endif // MAINWINDOW_H

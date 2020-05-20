@@ -3,7 +3,7 @@
 #include <QSqlQuery>
 
 const auto CREATE_MEAS = QLatin1String (R"(
-    create table measurement_group(id integer primary key autoincrement,
+    create table measurement(id integer primary key autoincrement,
                                 pattern varchar (50),
                                 name varchar (15),
                                 full_name varchar (50),
@@ -15,7 +15,7 @@ const auto CREATE_MEAS = QLatin1String (R"(
                                 foreign key (group_name) references measurement_group (id)))");
 
 const auto INSERT_MEAS = QLatin1String (R"(
-    insert into measurement(pattern, name, full_name, description, image, group_name),
+    insert into measurement(pattern, name, full_name, description, image, group_name)
     values (?, ?, ?, ?, ?, ?))");
 
 const auto SELECT_MEAS = QLatin1String(R"(
@@ -31,25 +31,28 @@ VMEAS::VMEAS(QSqlDatabase &db) noexcept:
 
 void VMEAS::Init() const
 {
-    QSqlQuery query (mDatabase);
-    query.prepare(CREATE_MEAS);
-    VDatabaseManager::Warning(query);
-    query.exec();
+    if (!mDatabase.tables().contains(MEAS_TABLE))
+    {
+        QSqlQuery query (mDatabase);
+        query.prepare(CREATE_MEAS);
+        VDatabaseManager::Warning(query);
+        query.exec();
+    }
 }
 
 void VMEAS::AddMeasurement(MEAS &meas) const
-{
-    QSqlQuery query (mDatabase);
-    query.prepare(INSERT_MEAS);
-    query.addBindValue(meas.Pattern());
-    query.addBindValue(meas.Name());
-    query.addBindValue(meas.FullName());
-    query.addBindValue(meas.Description());
-    query.addBindValue(meas.Image());
-    query.addBindValue(meas.Group());
-    meas.SetId(query.lastInsertId().toInt());
-    VDatabaseManager::Warning(query);
-    query.exec();
+{   
+        QSqlQuery query (mDatabase);
+        query.prepare(INSERT_MEAS);
+        query.addBindValue(meas.Pattern());
+        query.addBindValue(meas.Name());
+        query.addBindValue(meas.FullName());
+        query.addBindValue(meas.Description());
+        query.addBindValue(meas.Image());
+        query.addBindValue(meas.Group());
+        meas.SetId(query.lastInsertId().toInt());
+        VDatabaseManager::Warning(query);
+        query.exec();
 }
 
 vectorMEAS VMEAS::MeaasurementBuffer() const

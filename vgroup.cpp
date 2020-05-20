@@ -25,10 +25,13 @@ VGroup::VGroup(QSqlDatabase &db):
 
 void VGroup::Init() const
 {
-    QSqlQuery query (mDatabase);
-    query.prepare(CREATE_GROUP);
-    VDatabaseManager::Warning(query);
-    query.exec();
+    if (!mDatabase.tables().contains(GROUP_TABLE))
+    {
+        QSqlQuery query (mDatabase);
+        query.prepare(CREATE_GROUP);
+        VDatabaseManager::Warning(query);
+        query.exec();
+    }
 }
 
 void VGroup::AddGroup(Group &group) const

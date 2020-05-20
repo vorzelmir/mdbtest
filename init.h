@@ -20,17 +20,21 @@ struct GroupName
     QString pattern;
 };
 
-/**
- * @brief insert default data to the pattern_system table
- * @return QVector<PatternSystem>
- */
+struct Measurement
+{
+    QString pattern;
+    QString name;
+    QString fullName;
+    QString description;
+    QByteArray image;
+    QString group;
+};
+
 QVector <PatternSystem> PMSystem();
 
-/**
- * @brief insert default data to the measurement_group table
- * @return QVector<GroupName>
- */
 QVector <GroupName> GroupNames ();
+
+QVector <Measurement> Measurements();
 
 }
 #endif // INIT_H
