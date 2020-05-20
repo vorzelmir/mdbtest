@@ -5,7 +5,7 @@
 const auto CREATE_GROUP = QLatin1String (R"(
     create table measurement_group(id integer primary key autoincrement,
                                 name varchar (15),
-                                pattern varchar (50),
+                                pattern integer,
                                 unique (name, pattern),
                                 foreign key (pattern) references pattern_system (id)))");
 
