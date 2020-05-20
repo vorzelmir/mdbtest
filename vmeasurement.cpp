@@ -23,12 +23,14 @@ const auto SELECT_MEAS = QLatin1String(R"(
 
 const auto MEAS_TABLE = QStringLiteral ("measurement");
 
+//-------------------------------------------------------------------------------------------
 VMEAS::VMEAS(QSqlDatabase &db) noexcept:
     mDatabase(db)
 {
 
 }
 
+//-------------------------------------------------------------------------------------------
 void VMEAS::Init() const
 {
     if (!mDatabase.tables().contains(MEAS_TABLE))
